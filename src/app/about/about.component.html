@@ -68,38 +68,14 @@
   </div>
 
   <div fxFlex>
-    <!-- <mat-list>
-      <h2>Corporate Leadership</h2>
-      <div fxLayout="column">
-        <mat-list-item *ngFor="let lead of leaders">
-          
-            <div fxFlex="10">
-              <img
-                height="50px"
-                width="50px"
-                src="{{ lead.image }}"
-                alt="{{ lead.image }}"
-              />
-            </div>
-            <div fxFlex="100">
-              <p>{{lead.name}} </p>
-              <p>{{lead.designation}}</p>
-               <p matLine>{{ lead.description }}</p>  
-            </div>
-          
-        </mat-list-item>
-      </div>
-    </mat-list> -->
-
     <mat-list>
       <h2>Corporate Leadership</h2>
       <mat-list-item *ngFor="let lead of leaders">
         <img matListAvatar src="{{ lead.image }}" alt="{{ lead.image }}" />
-        <p matLine fxFlex="90">{{ lead.name }} {{lead.abbr}}</p>
+        <p matLine fxFlex="90">{{ lead.name }} {{ lead.abbr }}</p>
         <p matLine fxFlex="90">{{ lead.designation }}</p>
         <p matLine fxFlex="90">{{ lead.description }}</p>
       </mat-list-item>
     </mat-list>
   </div>
-  <!-- </div> -->
 </div>
