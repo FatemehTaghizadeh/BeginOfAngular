@@ -8,7 +8,7 @@ import{FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import{MatButtonModule} from '@angular/material/button';
 import { AppComponent } from './app.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
@@ -18,11 +18,20 @@ import {FooterComponent} from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSliderModule} from '@angular/material'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {DishService} from './services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import {LeaderService} from './services/leader.service';
 import {AppRoutingModule} from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +41,8 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
     
   ],
   imports: [
@@ -44,8 +54,21 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatProgressSpinnerModule
     
+  ],
+  entryComponents:[
+    LoginComponent
   ],
   providers: [
     DishService,
