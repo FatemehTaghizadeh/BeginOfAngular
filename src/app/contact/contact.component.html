@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div fxFlex>
+  <div fxFlex [@expand]>
     <h3>Location Information</h3>
     <div fxLayout="column" fxLayout.gt-sm="row">
       <div fxFlex="50" fxFlexOffset="20px">
@@ -37,35 +37,70 @@
     </div>
   </div>
 
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex fxFlexOffset="20px" class="form-size" [@expand]>
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
-
+    
     <form
       novalidate
       [formGroup]="feedbackForm"
       #fform="ngForm"
       (ngSubmit)="onSubmit()"
+      method="POST"
+      *ngIf="show"
     >
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-          <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+          <input
+            matInput
+            formControlName="firstname"
+            placeholder="First Name"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="formErrors.firstname">{{
+            formErrors.firstname
+          }}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-          <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+          <input
+            matInput
+            formControlName="lastname"
+            placeholder="Last Name"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="formErrors.lastname">{{
+            formErrors.lastname
+          }}</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
-          <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
+          <input
+            matInput
+            formControlName="telnum"
+            placeholder="Tel. Number"
+            type="tel"
+            pattern="[0-9]*"
+            required
+          />
+          <mat-error *ngIf="formErrors.telnum">{{
+            formErrors.telnum
+          }}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" email required>
-          <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            type="email"
+            email
+            required
+          />
+          <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
         </mat-form-field>
+      </p>
+
       <table class="form-size">
         <td>
           <mat-slide-toggle formControlName="agree"
@@ -73,11 +108,14 @@
           >
         </td>
         <td>
-          <mat-select placeholder="How?" formControlName="contactType">
-            <mat-option *ngFor="let ctype of contactType" [value]="ctype">
-              {{ ctype }}
-            </mat-option>
-          </mat-select>
+          <mat-form-field>
+            <mat-label>How?</mat-label>
+            <mat-select [(value)]="selected" formControlName="contacttype" >
+              <mat-option value="None">None</mat-option>
+              <mat-option value="Tel">Tel</mat-option>
+              <mat-option value="Email">Email</mat-option>
+            </mat-select>
+          </mat-form-field>
         </td>
       </table>
       <p>
@@ -95,9 +133,25 @@
         mat-button
         class="background-primary text-floral-white"
         [disabled]="feedbackForm.invalid"
+        (click)="onSubmit()"
       >
         Submit
       </button>
     </form>
   </div>
+  <div *ngIf="(show === false) && (show2 === true)" [@expand]>
+    <mat-spinner> </mat-spinner>
+  </div>
+  
+  <mat-list-item *ngIf="(show === false) && (show2 === false) " [@expand]>
+    <h4 matline>Your Submission</h4>
+    <p matline>Firstname : {{ feedbackForm.value.firstname }}</p>
+    <p matline>Lastname : {{ feedbackForm.value.lastname }}</p>
+    <p matline>Email : {{ feedbackForm.value.email }}</p>
+    <p matline>Contact You? : {{ feedbackForm.value.agree }}</p>
+    <p matline> How? : {{selected}}</p>
+    <p matline> Feedback : {{feedbackForm.value.message}}</p>
+  </mat-list-item>
+  
+  
 </div>
